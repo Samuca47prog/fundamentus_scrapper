@@ -1,0 +1,20 @@
+[project]
+name = "fundamentus-scrapper"
+version = "0.1.0"
+description = "Scripts that goes into fundamentus.com.br and scrappes data on the screen"
+authors = [
+    {name = "Samuca47prog",email = "samuelsimao47@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "selenium (>=4.33.0,<5.0.0)",
+    "pandas (>=2.2.3,<3.0.0)",
+    "beautifulsoup4 (>=4.13.4,<5.0.0)",
+    "webdriver-manager (>=4.0.2,<5.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
