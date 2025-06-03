@@ -1,5 +1,6 @@
 [project]
 name = "fundamentus-scrapper"
+
 version = "0.1.0"
 description = "Scripts that goes into fundamentus.com.br and scrappes data on the screen"
 authors = [
