@@ -18,6 +18,7 @@ dependencies = [
 
 [project.scripts]
 fundamentus-scrapper = "fundamentus_scrapper.__main__:main"
+tests = "fundamentus_scrapper.run_tests:main"
 
 
 [build-system]
@@ -26,3 +27,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 packages = [{ include = "fundamentus_scrapper", from = "src" }]
+
+[tool.poetry.group.dev.dependencies]
+pytest-sugar = "^1.0.0"
+

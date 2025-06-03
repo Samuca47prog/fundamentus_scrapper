@@ -5,6 +5,7 @@ from . import config
 
 def main() -> None:
     """Entry point for the command line script."""
+
     driver = get_driver(headless=False)
     try:
         apply_filters(driver, config.FILTERS)
