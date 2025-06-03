@@ -1,6 +1,15 @@
 from unittest.mock import patch, MagicMock
+import pytest
 from bs4 import BeautifulSoup
-from fundamentus_scrapper.parser import get_page_soup, get_table_from_soup
+import numpy as np
+import pandas as pd
+
+from fundamentus_scrapper.parser import (
+    get_page_soup,
+    get_table_from_soup,
+    convert_to_numeric_columns,
+)
+from fundamentus_scrapper.config import STOCKS_CONFIG
 
 
 # get_page_soup tests
@@ -33,3 +42,36 @@ def test_get_table_from_soup():
     assert list(df.columns) == ["Name", "Age"]
     assert df.loc[0, "Name"] == "Alice"
     assert df.loc[1, "Age"] == "25"
+
+
+def test_get_table_from_soup_stocks_table():
+    soup = get_page_soup("https://www.fundamentus.com.br/resultado.php")
+    df = get_table_from_soup(soup)
+    assert df.shape[0] > 0
+
+
+
+# convert_to_numeric_columns tests
+
+def test_convert_to_numeric_columns_basic():
+    df = pd.DataFrame(
+        {
+            "P/L": ["10,00", "5,50"],
+            "Div.Yield": ["1,23%", "2,35%"],
+            "Papel": ["A", "B"],
+        }
+    )
+
+    converted = convert_to_numeric_columns(df.copy(), STOCKS_CONFIG)
+
+    assert converted["P/L"].tolist() == [10.0, 5.5]
+    assert converted["Div.Yield"].tolist() == pytest.approx([0.0123, 0.0235])
+    # Columns without numeric conversion remain unchanged
+    assert converted["Papel"].tolist() == ["A", "B"]
+
+
+def test_convert_to_numeric_columns():
+    soup = get_page_soup("https://www.fundamentus.com.br/resultado.php")
+    df = get_table_from_soup(soup)
+    df = convert_to_numeric_columns(df, STOCKS_CONFIG)
+    assert df["P/L"].dtype == np.float64
