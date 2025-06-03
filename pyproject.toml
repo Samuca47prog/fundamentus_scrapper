@@ -22,3 +22,6 @@ fundamentus-scrapper = "fundamentus_scrapper.__main__:main"
 [build-system]
 requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [{ include = "fundamentus_scrapper", from = "src" }]
