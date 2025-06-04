@@ -38,6 +38,8 @@ class StockApp(tk.Tk):
     def _on_close(self) -> None:
         """Handle the window close event."""
         self.destroy()
+        self.quit()
+        plt.close(self.figure)
 
     def _create_frames(self) -> None:
         """Create layout frames for table, filters and graphs."""

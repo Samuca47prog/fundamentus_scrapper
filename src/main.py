@@ -1,19 +1,20 @@
-from scrapper.scrapper import get_driver, apply_filters, extract_table_html
-from scrapper.parser import extract_table_from_html
-import config
+from scrapper.parser import (
+    get_page_soup,
+    get_table_from_soup,
+    convert_to_numeric_columns,
+)
+from config import STOCKS_CONFIG
+from gui.tk_app import run
 
 
 def main() -> None:
     """Entry point for the command line script."""
 
-    driver = get_driver(headless=False)
-    try:
-        apply_filters(driver, config.FILTERS)
-        html = extract_table_html(driver)
-        df = extract_table_from_html(html)
-        print(df.head())
-    finally:
-        driver.quit()
+    soup = get_page_soup("https://www.fundamentus.com.br/resultado.php")
+    df = get_table_from_soup(soup)
+    df = convert_to_numeric_columns(df, STOCKS_CONFIG)
+
+    run(df)
 
 
 if __name__ == "__main__":

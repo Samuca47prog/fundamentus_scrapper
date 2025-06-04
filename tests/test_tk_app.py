@@ -14,7 +14,4 @@ def test_stock_app_launch(get_data_dir):
         pytest.skip("tkinter not available")
     from gui.tk_app import StockApp
 
-    app = StockApp(df)
-    app.after(10000, app.destroy)
-    # app.mainloop()         # block until the user closes the window
-    app.destroy()
+    run(df)
