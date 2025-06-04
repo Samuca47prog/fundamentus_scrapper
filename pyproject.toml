@@ -29,6 +29,7 @@ build-backend = "poetry.core.masonry.api"
 packages = [
     { include = "scrapper", from = "src" },
     { include = "filters", from = "src" },
+    { include = "gui", from = "src" },
 ]
 
 [tool.poetry.group.dev.dependencies]
