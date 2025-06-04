@@ -17,7 +17,7 @@ dependencies = [
   ]
 
 [project.scripts]
-fundamentus-scrapper = "main:main"
+main = "main:main"
 tests = "run_tests:main"
 
 
