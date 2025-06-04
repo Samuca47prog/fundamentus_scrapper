@@ -21,6 +21,10 @@ class StockApp(tk.Tk):
         self.title("Fundamentus Stocks")
         self.geometry("1024x768")
 
+        # ensure the application closes cleanly when the window is
+        # dismissed via the window manager close button ("X")
+        self.protocol("WM_DELETE_WINDOW", self._on_close)
+
         self.df_original = df
         self.df_filtered = df
         self.current_filters: List[Dict[str, Any]] = []
@@ -30,6 +34,10 @@ class StockApp(tk.Tk):
         self._create_filter_controls()
         self._create_graph()
         self._populate_table(self.df_filtered)
+
+    def _on_close(self) -> None:
+        """Handle the window close event."""
+        self.destroy()
 
     def _create_frames(self) -> None:
         """Create layout frames for table, filters and graphs."""
