@@ -1,5 +1,6 @@
 # fundamentus_scrapper
 
 # Commands
-* Run main with ```poetry run fundamentus-scrapper```
-* Run tests with ```poetry run tests```
+The CLI entrypoints are defined in ``main.py`` and ``run_tests.py``.
+* Run the application with ``poetry run fundamentus-scrapper``
+* Execute the test suite with ``poetry run tests``

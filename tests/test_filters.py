@@ -1,5 +1,5 @@
 import pandas as pd
-from fundamentus_scrapper.filters import apply_filters_df
+from filters.filters import apply_filters_df
 
 
 def test_apply_filters_df_basic():

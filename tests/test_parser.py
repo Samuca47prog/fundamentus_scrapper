@@ -4,17 +4,17 @@ from bs4 import BeautifulSoup
 import numpy as np
 import pandas as pd
 
-from fundamentus_scrapper.parser import (
+from scrapper.parser import (
     get_page_soup,
     get_table_from_soup,
     convert_to_numeric_columns,
 )
-from fundamentus_scrapper.config import STOCKS_CONFIG
+from config import STOCKS_CONFIG
 
 
 # get_page_soup tests
 
-@patch("fundamentus_scrapper.parser.urlopen")
+@patch("scrapper.parser.urlopen")
 def test_get_page_soup(mock_urlopen):
     html = b"<html><body><p>Hello</p></body></html>"
     mock_urlopen.return_value = MagicMock(read=lambda: html, __enter__=lambda s: s, __exit__=lambda *args: None)

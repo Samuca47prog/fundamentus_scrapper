@@ -3,7 +3,7 @@ from urllib.request import Request, urlopen
 from urllib.error import URLError, HTTPError
 import pandas as pd
 
-from fundamentus_scrapper.config import STOCKS_CONFIG
+from config import STOCKS_CONFIG
 
 def get_page_soup(url: str) -> BeautifulSoup:
     hdr = {'User-Agent': 'Mozilla/5.0'}

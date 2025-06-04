@@ -1,6 +1,6 @@
-from .scrapper import get_driver, apply_filters, extract_table_html
-from .parser import extract_table_from_html
-from . import config
+from scrapper.scrapper import get_driver, apply_filters, extract_table_html
+from scrapper.parser import extract_table_from_html
+import config
 
 
 def main() -> None:
